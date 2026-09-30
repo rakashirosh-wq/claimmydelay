@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://claimmydelay.vercel.app/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://claimmydelay.vercel.app/check.html</loc><changefreq>monthly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://claimmydelay.vercel.app/claim-letter.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://claimmydelay.vercel.app/fee-facts.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://claimmydelay.vercel.app/compare-companies.html</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://claimmydelay.vercel.app/diy-vs-company.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://claimmydelay.vercel.app/eu261-basics.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://claimmydelay.vercel.app/old-claims.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://claimmydelay.vercel.app/us-refund-vs-compensation.html</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://claimmydelay.vercel.app/airlines/ryanair.html</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://claimmydelay.vercel.app/airlines/easyjet.html</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://claimmydelay.vercel.app/airlines/british-airways.html</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://claimmydelay.vercel.app/airlines/lufthansa.html</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://claimmydelay.vercel.app/airlines/wizz-air.html</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://claimmydelay.vercel.app/airlines/air-france.html</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://claimmydelay.vercel.app/airlines/us-carriers.html</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://claimmydelay.vercel.app/airlines/klm.html</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://claimmydelay.vercel.app/airlines/iberia-vueling.html</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://claimmydelay.vercel.app/airlines/turkish-norwegian.html</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://claimmydelay.vercel.app/airlines/tap-sas-jet2-swiss.html</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://claimmydelay.vercel.app/airlines/non-eu-longhaul.html</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+</urlset>

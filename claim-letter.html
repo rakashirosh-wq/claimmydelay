@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generate Your Flight Compensation Claim Letter — $10, Keep 100% of Your Payout</title>
+<meta name="description" content="Get a ready-to-send claim letter citing the exact regulation for your flight, for a flat $10. No commission, no subscription — you keep whatever the airline pays you.">
+<link rel="canonical" href="https://claimmydelay.vercel.app/claim-letter.html">
+<meta property="og:title" content="Generate Your Flight Compensation Claim Letter — $10 Flat">
+<meta property="og:description" content="A ready-to-send claim letter citing the right regulation, for a flat $10. Keep 100% of your payout.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://claimmydelay.vercel.app/claim-letter.html">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --board: #101B2E; --board-light: #1A2A45; --amber: #F2A93B; --paper: #FAFAF7;
+    --ink: #181818; --verified: #3F7158; --caution: #B5562E; --slate: #5C6B7A; --line: rgba(16,27,46,0.12);
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font-family:'Source Serif 4',serif; line-height:1.55; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px 80px; }
+  .board-strip { background: var(--board); color: var(--paper); padding: 14px 0; font-family:'JetBrains Mono',monospace; font-size: 12.5px; }
+  .board-strip .wrap { padding-bottom:0; display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap; }
+  .board-strip a { color: var(--amber); text-decoration: none; font-weight: 700; }
+  header { padding: 40px 0 4px; }
+  .eyebrow {
+    font-family:'JetBrains Mono',monospace; font-size:11.5px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
+    color: var(--board); background: rgba(242,169,59,0.25); display:inline-block; padding:4px 9px; border-radius:4px; margin-bottom:16px;
+  }
+  h1 { font-family:'Inter',sans-serif; font-size: clamp(24px,4.2vw,34px); font-weight:700; letter-spacing:-0.01em; margin:0 0 12px; }
+  .lead { font-family:'Inter',sans-serif; font-size:16px; color:var(--slate); max-width:600px; }
+  .panel { border:1px solid var(--line); border-radius:10px; background:#fff; padding:26px; margin-top:24px; }
+  .panel h2 { font-family:'Inter',sans-serif; font-size:15.5px; font-weight:700; margin:0 0 16px; }
+  .field { margin-bottom:16px; }
+  label { display:block; font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600; margin-bottom:6px; }
+  .hint { font-family:'Inter',sans-serif; font-size:12px; color:var(--slate); margin-top:4px; display:block; }
+  input[type="text"], input[type="email"], input[type="date"], select, textarea {
+    width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:6px;
+    font-family:'Inter',sans-serif; font-size:15px; color:var(--ink); background:var(--paper);
+  }
+  input:focus, select:focus, textarea:focus { outline:2px solid var(--amber); outline-offset:1px; }
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  @media (max-width:600px){ .grid2{grid-template-columns:1fr;} }
+
+  .summary-box {
+    background: rgba(63,113,88,0.07); border:1px solid rgba(63,113,88,0.25); border-radius:8px;
+    padding:16px 18px; margin-bottom:22px; font-family:'Inter',sans-serif; font-size:14px;
+  }
+  .summary-box .amount { font-family:'JetBrains Mono',monospace; font-size:22px; font-weight:700; color:var(--verified); }
+
+  .preview {
+    border:1px solid var(--line); border-radius:8px; background:#fff; padding:24px; margin-top:20px;
+    font-family:'Source Serif 4',serif; font-size:14.5px; white-space: pre-wrap; line-height:1.7; display:none;
+  }
+  .preview.show { display:block; }
+  .preview-label {
+    font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;
+    color: var(--slate); margin-bottom:14px; display:block;
+  }
+
+  .pay-panel {
+    background: var(--board); color: var(--paper); border-radius:12px; padding:26px; margin-top:24px; display:none;
+  }
+  .pay-panel.show { display:block; }
+  .pay-panel h2 { color: var(--paper); font-family:'Inter',sans-serif; font-size:16px; }
+  .pay-panel p { font-family:'Inter',sans-serif; font-size:14px; color:rgba(250,250,247,0.78); }
+  .price-row { display:flex; align-items:baseline; gap:8px; margin: 14px 0 18px; }
+  .price { font-family:'JetBrains Mono',monospace; font-size:34px; font-weight:700; color:var(--amber); }
+  .price-note { font-family:'Inter',sans-serif; font-size:13px; color:rgba(250,250,247,0.6); }
+  .btn { font-family:'Inter',sans-serif; font-weight:600; font-size:15px; padding:13px 24px; border-radius:7px; border:none; cursor:pointer; width:100%; }
+  .btn-primary { background:var(--board); color:var(--paper); }
+  .btn-pay { background: var(--amber); color: var(--board); }
+  .btn-pay:hover { background:#e09a28; }
+
+  .ad-slot { border:1px dashed var(--line); border-radius:8px; padding:16px; text-align:center; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--slate); margin:32px 0; }
+  footer { padding: 32px 0 48px; font-family:'Inter',sans-serif; font-size:13px; color:var(--slate); }
+</style>
+</head>
+<body>
+
+<div class="board-strip"><div class="wrap"><a href="/">← CLAIMMYDELAY</a><span>STEP 2 OF 2 — CLAIM LETTER</span></div></div>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Step 2 of 2</span>
+    <h1>Build your claim letter</h1>
+    <p class="lead">Fill in your flight details. We'll generate a letter citing the exact regulation, ready to send to the airline yourself — no account needed.</p>
+  </header>
+
+  <div class="summary-box" id="summaryBox">
+    Based on your eligibility check: estimated <span class="amount" id="summaryAmount">€400</span> compensation.
+  </div>
+
+  <div class="panel">
+    <h2>Your details</h2>
+    <div class="grid2">
+      <div class="field">
+        <label for="fullName">Full name (as on booking)</label>
+        <input type="text" id="fullName" placeholder="Jane Doe">
+      </div>
+      <div class="field">
+        <label for="email">Email (for the airline to respond to)</label>
+        <input type="email" id="email" placeholder="jane@example.com">
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="field">
+        <label for="bookingRef">Booking reference</label>
+        <input type="text" id="bookingRef" placeholder="e.g. ABCD12">
+      </div>
+      <div class="field">
+        <label for="flightNumber">Flight number</label>
+        <input type="text" id="flightNumber" placeholder="e.g. FR1234">
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="field">
+        <label for="route">Route (from → to)</label>
+        <input type="text" id="route" placeholder="e.g. Berlin (BER) → Lisbon (LIS)">
+      </div>
+      <div class="field">
+        <label for="flightDateLetter">Flight date</label>
+        <input type="date" id="flightDateLetter">
+      </div>
+    </div>
+    <div class="field">
+      <label for="airlineName">Airline</label>
+      <input type="text" id="airlineName" placeholder="e.g. Ryanair">
+    </div>
+    <div class="field">
+      <label for="extraNotes">Anything else worth mentioning? (optional)</label>
+      <textarea id="extraNotes" rows="3" placeholder="e.g. crew mentioned it was a staffing issue, not weather"></textarea>
+    </div>
+
+    <button class="btn btn-primary" onclick="generatePreview()">Preview my letter</button>
+  </div>
+
+  <div class="preview" id="previewBox">
+    <span class="preview-label">Letter preview</span>
+    <div id="previewText"></div>
+  </div>
+
+  <div class="pay-panel" id="payPanel">
+    <h2>Get the final version</h2>
+    <p>The preview above is the full letter — paying unlocks the clean, downloadable version (PDF + plain text) with your details properly formatted, ready to copy into an email or attach directly.</p>
+    <div class="price-row">
+      <span class="price">$10</span>
+      <span class="price-note">one-time · no subscription</span>
+    </div>
+    <button class="btn btn-pay" id="paddleCheckoutBtn">Pay with card — get my letter</button>
+  </div>
+
+  <div class="ad-slot">
+    <ins class="adsbygoogle"
+         style="display:block; text-align:center;"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="0000000001"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+  </div>
+
+  <p style="font-family:'Inter',sans-serif; font-size:12.5px; color:var(--slate);">
+    This letter is a template based on standard EU261/UK261 claim language — it isn't a substitute for legal advice, and we can't guarantee the airline will pay. If they deny a valid claim, see our <a href="/compare-companies.html">guide to companies that pursue denied claims</a>.
+  </p>
+</div>
+
+<footer><div class="wrap">ClaimMyDelay is an independent resource. Not affiliated with any airline or claims company. Information is not legal advice.</div></footer>
+
+<script>
+function $(id){ return document.getElementById(id); }
+
+// Read query params from the eligibility checker
+const params = new URLSearchParams(window.location.search);
+const amount = params.get('amount') || '400';
+const situation = params.get('situation') || 'delay';
+$('summaryAmount').textContent = '€' + amount;
+
+const regulationMap = {
+  delay: { article: 'Article 7', clause: 'compensation for delays of 3 hours or more at final destination' },
+  cancelled: { article: 'Article 5 and 7', clause: 'compensation for cancellation without adequate advance notice' },
+  denied_boarding: { article: 'Article 4 and 7', clause: 'compensation for denied boarding' }
+};
+
+function generatePreview() {
+  const name = $('fullName').value || '[Your name]';
+  const booking = $('bookingRef').value || '[Booking reference]';
+  const flightNum = $('flightNumber').value || '[Flight number]';
+  const route = $('route').value || '[Route]';
+  const date = $('flightDateLetter').value || '[Flight date]';
+  const airline = $('airlineName').value || '[Airline]';
+  const notes = $('extraNotes').value;
+  const reg = regulationMap[situation] || regulationMap.delay;
+
+  const letter = `Subject: Compensation Claim — Flight ${flightNum}, ${date} — Booking Ref ${booking}
+
+To ${airline} Customer Relations,
+
+I am writing to formally request compensation under EU Regulation 261/2004 (and equivalent UK261 provisions, where applicable), specifically ${reg.article}, regarding ${reg.clause}.
+
+Flight details:
+— Passenger name: ${name}
+— Booking reference: ${booking}
+— Flight number: ${flightNum}
+— Route: ${route}
+— Date: ${date}
+
+${notes ? 'Additional details: ' + notes + '\n\n' : ''}Based on the distance and circumstances of this flight, I am owed €${amount} in compensation under the above regulation. I have not received any communication indicating this delay/cancellation was due to extraordinary circumstances as defined under Article 5(3), and I would ask you to clarify the specific cause if you intend to dispute this claim on that basis.
+
+Please confirm receipt of this claim and provide a timeline for processing. I look forward to your response within 14 days.
+
+Regards,
+${name}
+[Your contact email]`;
+
+  $('previewText').textContent = letter;
+  $('previewBox').classList.add('show');
+  $('payPanel').classList.add('show');
+  $('previewBox').scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+// Paddle Checkout integration
+// Requires a Paddle account (vendor ID + product/price ID) — set these before going live
+const PADDLE_VENDOR_ID = 'YOUR_PADDLE_VENDOR_ID';
+const PADDLE_PRICE_ID = 'YOUR_PADDLE_PRICE_ID';
+
+(function loadPaddle() {
+  const script = document.createElement('script');
+  script.src = 'https://cdn.paddle.com/paddle/v2/paddle.js';
+  script.onload = function() {
+    if (window.Paddle) {
+      Paddle.Setup({ vendor: PADDLE_VENDOR_ID });
+    }
+  };
+  document.head.appendChild(script);
+})();
+
+$('paddleCheckoutBtn').addEventListener('click', function() {
+  if (!$('fullName').value || !$('email').value) {
+    alert('Please fill in your name and email before checking out.');
+    return;
+  }
+  if (window.Paddle) {
+    Paddle.Checkout.open({
+      items: [{ priceId: PADDLE_PRICE_ID, quantity: 1 }],
+      customer: { email: $('email').value },
+      customData: {
+        fullName: $('fullName').value,
+        bookingRef: $('bookingRef').value,
+        flightNumber: $('flightNumber').value,
+        route: $('route').value,
+        flightDate: $('flightDateLetter').value,
+        airline: $('airlineName').value,
+        amount: amount,
+        situation: situation,
+        notes: $('extraNotes').value
+      },
+      successCallback: function(data) {
+        window.location.href = '/claim-letter-success.html';
+      }
+    });
+  } else {
+    alert('Payment system is still loading — please try again in a moment.');
+  }
+});
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</body>
+</html>

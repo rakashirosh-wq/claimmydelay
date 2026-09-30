@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flight Claim Company Fees — What They Actually Charge (Checked Against Their Own Pages)</title>
+<meta name="description" content="We checked each flight compensation company's own pricing pages directly. Here's what we found, including where companies state different numbers in different places.">
+<link rel="canonical" href="https://claimmydelay.vercel.app/fee-facts.html">
+<meta property="og:title" content="Flight Claim Company Fees — Checked Against Their Own Pages">
+<meta property="og:description" content="What AirHelp, Flightright, EUclaim and others actually charge, sourced directly from their own current pages — including where they disagree with themselves.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://claimmydelay.vercel.app/fee-facts.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much commission does AirHelp charge?",
+      "acceptedAnswer": { "@type": "Answer", "text": "AirHelp charges 35% including VAT, rising to up to 50% if legal action is required. Source: AirHelp's published price list, checked June 2026." }
+    },
+    {
+      "@type": "Question",
+      "name": "How much commission does Flightright charge?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Flightright charges 20-30% plus VAT, with an additional 14% solicitor's surcharge if legal action is required. Verified directly across four of Flightright's own pages in June 2026." }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do EUclaim's fee percentages differ across their own website?",
+      "acceptedAnswer": { "@type": "Answer", "text": "EUclaim's own pages state four different figures (69%, 71%, 31% fee, 29% fee), likely due to VAT-inclusive vs VAT-exclusive framing and possible differences by country division. We recommend confirming the exact figure for your case directly with EUclaim before signing." }
+    }
+  ]
+}
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --board: #101B2E;
+    --board-light: #1A2A45;
+    --amber: #F2A93B;
+    --paper: #FAFAF7;
+    --ink: #181818;
+    --verified: #3F7158;
+    --caution: #B5562E;
+    --slate: #5C6B7A;
+    --line: rgba(16,27,46,0.12);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Source Serif 4', serif;
+    line-height: 1.55;
+  }
+  .wrap { max-width: 800px; margin: 0 auto; padding: 0 24px 80px; }
+
+  .board-strip {
+    background: var(--board);
+    color: var(--paper);
+    padding: 14px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+  }
+  .board-strip .wrap { padding-bottom: 0; display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap;}
+  .board-strip a { color: var(--amber); text-decoration: none; font-weight: 700; }
+
+  header { padding: 44px 0 8px; }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--board);
+    background: rgba(242,169,59,0.25);
+    display: inline-block;
+    padding: 4px 9px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+  }
+  h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(26px, 4.5vw, 38px);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0 0 14px;
+  }
+  .lead {
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    color: var(--slate);
+    max-width: 600px;
+  }
+
+  .disclosure {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--slate);
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 24px 0 0;
+  }
+
+  h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin: 48px 0 16px;
+  }
+
+  /* ---- company card ---- */
+  .company {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: #fff;
+    padding: 22px 24px;
+    margin-bottom: 20px;
+  }
+  .company-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .company-head h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+  }
+  .confidence {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+  .confidence.clean { background: rgba(63,113,88,0.12); color: var(--verified); }
+  .confidence.mixed { background: rgba(181,86,46,0.12); color: var(--caution); }
+
+  .fee-line {
+    font-family: 'Inter', sans-serif;
+    font-size: 14.5px;
+    margin-bottom: 4px;
+  }
+  .fee-line strong { font-family: 'JetBrains Mono', monospace; }
+
+  .conflict-box {
+    background: rgba(181,86,46,0.06);
+    border-left: 3px solid var(--caution);
+    border-radius: 0 6px 6px 0;
+    padding: 12px 14px;
+    margin-top: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13.5px;
+  }
+  .conflict-box .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--caution);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .conflict-box table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+    font-size: 13px;
+  }
+  .conflict-box td {
+    padding: 4px 8px 4px 0;
+    vertical-align: top;
+  }
+  .conflict-box td:first-child {
+    color: var(--slate);
+    white-space: nowrap;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+  }
+  .conflict-box a { color: var(--ink); }
+
+  .sources {
+    margin-top: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--slate);
+  }
+  .sources a { color: var(--slate); }
+
+  .takeaway {
+    background: var(--board-light);
+    color: var(--paper);
+    border-radius: 12px;
+    padding: 26px;
+    margin-top: 40px;
+  }
+  .takeaway h2 { color: var(--paper); margin-top: 0; }
+  .takeaway p { font-family: 'Inter', sans-serif; font-size: 15px; color: rgba(250,250,247,0.82); }
+  .takeaway a { color: var(--amber); }
+</style>
+</head>
+<body>
+
+  <div class="board-strip">
+    <div class="wrap"><a href="/">← CLAIMMYDELAY</a><span>FEE FACTS · LAST CHECKED JUNE 2026</span></div>
+  </div>
+
+  <div class="wrap">
+    <header>
+      <span class="eyebrow">Fee facts</span>
+      <h1>What flight claim companies actually charge</h1>
+      <p class="lead">We went to each company's own current pages rather than trusting other comparison sites (most of which are run by, or paid by, one of the companies they "compare"). Here's exactly what we found — including where a company's own pages disagree with each other.</p>
+      <div class="disclosure">Some links below are affiliate links — if you sign up through them, we may earn a commission at no extra cost to you. This doesn't change the numbers reported here, which come from each company's own published terms.</div>
+    </header>
+
+    <h2>Companies with a single, clear stated fee</h2>
+
+    <div class="company">
+      <div class="company-head">
+        <h3>AirHelp</h3>
+        <span class="confidence clean">Consistent across pages</span>
+      </div>
+      <div class="fee-line">Base fee: <strong>35%</strong> (including VAT) of the compensation amount</div>
+      <div class="fee-line">If legal action is needed: <strong>+15%</strong>, up to <strong>50% total</strong></div>
+      <div class="sources">Checked against AirHelp's published price list and third-party comparison pages citing the same figures. Treat as accurate as of June 2026 — fee structures can change, recheck on AirHelp's site before committing.</div>
+    </div>
+
+    <div class="company">
+      <div class="company-head">
+        <h3>Flightright</h3>
+        <span class="confidence clean">Consistent across pages</span>
+      </div>
+      <div class="fee-line">Base fee: <strong>20–30%</strong> + 19% VAT on the fee (not the full compensation)</div>
+      <div class="fee-line">If legal action is needed: <strong>+14%</strong> solicitor's surcharge</div>
+      <div class="sources">Checked directly across four of Flightright's own pages (costs, FAQ, ticket-refund page, and homepage) in June 2026 — all state the same 20–30% + VAT + 14% legal surcharge structure. This one holds up. Note: Flightright doesn't specify what determines where in the 20–30% range a given case lands, which is worth asking them directly before signing.</div>
+    </div>
+
+    <h2>Companies where the company's own pages disagree</h2>
+
+    <div class="company">
+      <div class="company-head">
+        <h3>EUclaim</h3>
+        <span class="confidence mixed">Inconsistent — 4 different figures found</span>
+      </div>
+      <p style="font-family:'Inter',sans-serif; font-size:14.5px; margin-top:0;">EUclaim's own site states different take-home percentages on different pages. All also charge a separate €33 per-passenger admin fee. Here's what we found, each from a live EUclaim page in June 2026:</p>
+      <div class="conflict-box">
+        <span class="label">Conflicting figures, same company, same month</span>
+        <table>
+          <tr><td>Homepage</td><td>"You receive <strong>69%</strong> of the compensation (€33 admin fee per passenger)"</td></tr>
+          <tr><td>FAQ page</td><td>"You will receive <strong>71% excl. VAT</strong> of the claim amount, minus a €33 administration fee"</td></tr>
+          <tr><td>"How we help" page</td><td>"We will deduct a success fee of <strong>31% (incl. VAT)</strong> plus €33 per person"</td></tr>
+          <tr><td>Terms &amp; conditions</td><td>"The no win-no fee rate in the English division is <strong>29% including VAT</strong>"</td></tr>
+        </table>
+      </div>
+      <div class="sources">Our read: the gap is likely VAT-inclusive vs. VAT-exclusive framing, and possibly differs by country division — but a visitor reading just one page has no way to know that. We'd ask EUclaim directly which figure applies to your country before signing anything, and get it in writing.<br>Sources: <a href="https://www.euclaim.com/" target="_blank">euclaim.com homepage</a>, <a href="https://www.euclaim.com/frequently-asked-questions" target="_blank">FAQ</a>, <a href="https://www.euclaim.com/our-service" target="_blank">how we help</a>, <a href="https://www.euclaim.com/terms-and-conditions" target="_blank">terms &amp; conditions</a> — all checked June 2026.</div>
+    </div>
+
+    <div class="company">
+      <div class="company-head">
+        <h3>MYFLYRIGHT</h3>
+        <span class="confidence mixed">Two fee tiers — not both mentioned on every page</span>
+      </div>
+      <p style="font-family:'Inter',sans-serif; font-size:14.5px; margin-top:0;">MYFLYRIGHT's main cost page describes a standard 25% (+VAT) commission. Its customer FAQ adds a second tier not mentioned on the main cost page: 35% (+VAT) for cases paid out immediately rather than through the standard process.</p>
+      <div class="conflict-box">
+        <span class="label">What each page emphasizes</span>
+        <table>
+          <tr><td>Cost &amp; fees page</td><td>"The standard commission is <strong>25%</strong> of the compensation amount, plus the applicable VAT (19%)"</td></tr>
+          <tr><td>Customer FAQ</td><td>"We charge a commission of <strong>25% plus VAT or 35% plus VAT</strong> for cases that we immediately pay out"</td></tr>
+        </table>
+      </div>
+      <div class="sources">May not be a true contradiction — likely just a tier most customers won't hit, omitted from the simpler page. But if speed matters to your decision, ask which tier applies before signing.<br>Sources: <a href="https://myflyright.com/services/cost-and-fees/" target="_blank">cost &amp; fees page</a>, <a href="https://myflyright.com/customer-portal/faq/" target="_blank">customer FAQ</a> — checked June 2026.</div>
+    </div>
+
+    <h2>Companies we haven't independently verified yet</h2>
+
+    <div class="company">
+      <div class="company-head">
+        <h3>Skycop, ClaimFlights, AirAdvisor</h3>
+        <span class="confidence mixed">Self-reported only — not yet confirmed independently</span>
+      </div>
+      <p style="font-family:'Inter',sans-serif; font-size:14.5px; margin:0;">The fee figures we've seen for these (roughly 25–40% depending on the company) come from either the company's own marketing pages or competitors' comparison pages — neither is a fully independent source. We're not publishing numbers here until we've confirmed them directly. Check back, or verify on each company's own current pricing page before signing up.</p>
+    </div>
+
+    <div class="takeaway">
+      <h2>What this means for you</h2>
+      <p>Fee percentages alone don't tell the whole story — what matters is what you actually take home, and whether the company is upfront about it before you sign. If a company's own pages can't agree on their fee, ask them in writing which number applies to you before committing. That request alone is a reasonable test of how transparent they'll be once they're handling your claim.</p>
+      <p>Want to skip the company-fee question entirely? <a href="/claim-form.html">Generate your own claim letter for $10</a> and keep 100% of whatever the airline pays you.</p>
+    </div>
+
+  </div>
+</body>
+</html>

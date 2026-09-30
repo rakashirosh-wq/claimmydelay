@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flight Delayed or Cancelled? Find Out What You're Owed — Checked & Sourced</title>
+<meta name="description" content="Plain-English guide to flight delay and cancellation compensation. Every claim sourced and dated. Compare DIY vs claims companies honestly, or generate your own claim letter for $10.">
+<link rel="canonical" href="https://claimmydelay.vercel.app/">
+<meta property="og:title" content="Flight Delayed or Cancelled? Find Out What You're Owed">
+<meta property="og:description" content="Plain-English, sourced guide to flight compensation. Compare DIY vs claims companies honestly.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://claimmydelay.vercel.app/">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "ClaimMyDelay",
+  "description": "Independent, sourced guide to flight delay and cancellation compensation rights.",
+  "url": "https://claimmydelay.vercel.app/"
+}
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --board: #101B2E;
+    --board-light: #1A2A45;
+    --amber: #F2A93B;
+    --paper: #FAFAF7;
+    --ink: #181818;
+    --verified: #3F7158;
+    --slate: #5C6B7A;
+    --line: rgba(16,27,46,0.12);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Source Serif 4', serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---- Top board strip ---- */
+  .board-strip {
+    background: var(--board);
+    color: var(--paper);
+    padding: 14px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.03em;
+  }
+  .board-strip .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .board-strip .brand {
+    color: var(--amber);
+    font-weight: 700;
+  }
+  .board-strip .status {
+    color: rgba(250,250,247,0.6);
+  }
+
+  /* ---- Hero ---- */
+  header.hero {
+    background: var(--board);
+    color: var(--paper);
+    padding: 56px 0 64px;
+  }
+  .hero h1 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: clamp(28px, 4.8vw, 44px);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    margin: 0 0 16px;
+    max-width: 640px;
+  }
+  .hero .accent { color: var(--amber); }
+  .hero p.lead {
+    font-family: 'Source Serif 4', serif;
+    font-size: 18px;
+    color: rgba(250,250,247,0.78);
+    max-width: 540px;
+    margin: 0 0 28px;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 14.5px;
+    padding: 13px 22px;
+    border-radius: 7px;
+    text-decoration: none;
+    display: inline-block;
+    border: 1.5px solid transparent;
+  }
+  .btn-primary {
+    background: var(--amber);
+    color: var(--board);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--paper);
+    border-color: rgba(250,250,247,0.35);
+  }
+
+  /* ---- Verified fact callout (the signature element) ---- */
+  .verified {
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--verified);
+    background: #fff;
+    border-radius: 0 8px 8px 0;
+    padding: 16px 18px;
+    margin: 20px 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 14.5px;
+  }
+  .verified-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--verified);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+  .verified-tag::before {
+    content: '●';
+    font-size: 9px;
+  }
+  .verified-source {
+    display: block;
+    margin-top: 8px;
+    font-size: 12.5px;
+    color: var(--slate);
+  }
+  .verified-source a { color: var(--slate); text-decoration: underline; }
+
+  /* ---- Sections ---- */
+  section { padding: 56px 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type { border-bottom: none; }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--amber);
+    background: var(--board);
+    display: inline-block;
+    padding: 4px 9px;
+    border-radius: 4px;
+    margin-bottom: 14px;
+  }
+  h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(22px, 3.5vw, 30px);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0 0 16px;
+  }
+  .section-lead {
+    font-size: 17px;
+    color: var(--slate);
+    font-family: 'Inter', sans-serif;
+    max-width: 600px;
+    margin-bottom: 28px;
+  }
+
+  /* ---- Path cards ---- */
+  .paths {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  @media (max-width: 640px) { .paths { grid-template-columns: 1fr; } }
+  .path-card {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 24px;
+    background: #fff;
+  }
+  .path-card h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 10px;
+  }
+  .path-card p {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: var(--slate);
+    margin: 0 0 16px;
+  }
+  .path-card ul {
+    font-family: 'Inter', sans-serif;
+    font-size: 13.5px;
+    color: var(--ink);
+    padding-left: 18px;
+    margin: 0 0 18px;
+  }
+  .path-card ul li { margin-bottom: 6px; }
+  .path-card .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--verified);
+    margin-bottom: 10px;
+    display: block;
+  }
+  .path-card.affiliate .tag { color: var(--amber); }
+  .path-card .cta {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--board);
+    text-decoration: none;
+    border-bottom: 2px solid var(--amber);
+    padding-bottom: 2px;
+  }
+
+  /* ---- Airline grid ---- */
+  .airline-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+  }
+  .airline-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 13.5px;
+    font-weight: 500;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    text-decoration: none;
+    color: var(--ink);
+    background: #fff;
+  }
+  .airline-link:hover { border-color: var(--amber); }
+
+  /* ---- Methodology note ---- */
+  .methodology {
+    background: var(--board-light);
+    color: var(--paper);
+    border-radius: 12px;
+    padding: 28px;
+  }
+  .methodology h2 { color: var(--paper); }
+  .methodology p {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    color: rgba(250,250,247,0.8);
+    max-width: 600px;
+  }
+  .methodology a { color: var(--amber); }
+
+  footer {
+    padding: 32px 0 48px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--slate);
+  }
+</style>
+</head>
+<body>
+
+  <div class="board-strip">
+    <div class="wrap">
+      <span class="brand">CLAIMMYDELAY</span>
+      <span class="status">EVERY CLAIM ON THIS SITE IS DATED &amp; SOURCED — SEE METHODOLOGY ↓</span>
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="wrap">
+      <h1>Your flight was delayed.<br><span class="accent">Find out what you're actually owed</span> — and the real cost of getting it.</h1>
+      <p class="lead">Compensation rules, company fees, and your real options — checked against primary sources, not whoever pays us the most to rank first.</p>
+      <div class="hero-actions">
+        <a href="#" class="btn btn-primary">Check my flight</a>
+        <a href="#paths" class="btn btn-secondary">See my options</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+
+    <section id="paths">
+      <span class="eyebrow">Start here</span>
+      <h2>Two honest paths. We don't pretend one is right for everyone.</h2>
+      <p class="section-lead">Some claims are simple and airlines pay fast. Others get stalled for months. The right path depends on your situation, not on which option earns us more.</p>
+
+      <div class="paths">
+        <div class="path-card">
+          <span class="tag">Do it yourself · $10</span>
+          <h3>Generate your claim letter</h3>
+          <p>Best if: the airline has a working claims process, you're not in a rush, and you don't mind sending the email yourself.</p>
+          <ul>
+            <li>Cites the exact regulation and article for your route</li>
+            <li>One flat $10 fee — keep 100% of any compensation</li>
+            <li>No subscription, no recurring charge</li>
+          </ul>
+          <a href="#" class="cta">Build my claim letter →</a>
+        </div>
+        <div class="path-card affiliate">
+          <span class="tag">Full-service company</span>
+          <h3>Let a claims company chase it</h3>
+          <p>Best if: the airline already denied you, you're claiming for a past trip you'd otherwise let go, or you'd rather not deal with it at all.</p>
+          <ul>
+            <li>They take a cut (typically 25–40%) but absorb the risk and the chasing</li>
+            <li>Useful when an airline stalls or wrongly claims "extraordinary circumstances"</li>
+            <li>We link to companies based on fit, not highest commission — see our fee notes</li>
+          </ul>
+          <a href="/fee-facts.html" class="cta">Compare companies honestly →</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <span class="eyebrow">What we actually know</span>
+      <h2>The basics, sourced</h2>
+
+      <div class="verified">
+        <span class="verified-tag">Verified · checked Jun 2026</span>
+        Under EU261, you're generally owed €250–€600 if your flight arrived 3+ hours late, was cancelled with short notice, or you were denied boarding — unless the cause counted as an "extraordinary circumstance" (e.g. weather, air traffic control strikes by third parties).
+        <span class="verified-source">Source: European Commission, Air Passenger Rights — <a href="https://europa.eu/youreurope/citizens/travel/passenger-rights/air/index_en.htm" target="_blank">europa.eu</a></span>
+      </div>
+
+      <div class="verified">
+        <span class="verified-tag">Verified · checked Jun 2026</span>
+        Claims can often be filed years after the flight — some countries allow up to 6 years back. But this is changing: the EU has agreed to a reform standardizing this to 9 months across the bloc, expected to take effect within about 12 months. If you have an old claim, filing soon matters more than it used to.
+        <span class="verified-source">Sources: Financial Times analysis via Resolver; EU Parliament/Council reform agreement, June 2026 — <a href="/old-claims.html">full details</a></span>
+      </div>
+
+      <div class="verified">
+        <span class="verified-tag">Verified · checked Jun 2026</span>
+        The U.S. has no EU261-style cash compensation rule. Airlines must give refunds for cancelled or significantly changed flights, but cash compensation for delays generally isn't required by law — check our refund vs. compensation page for the distinction.
+        <span class="verified-source">Source: U.S. Department of Transportation — <a href="https://www.transportation.gov/airconsumer/airline-cancellation-delay-dashboard" target="_blank">transportation.gov</a></span>
+      </div>
+    </section>
+
+    <section>
+      <span class="eyebrow">By airline</span>
+      <h2>Find your airline's claims process</h2>
+      <p class="section-lead">Direct links to where to actually file, plus what we've found about typical response patterns.</p>
+      <div class="airline-grid">
+        <a href="/airlines/ryanair.html" class="airline-link">Ryanair</a>
+        <a href="/airlines/easyjet.html" class="airline-link">easyJet</a>
+        <a href="/airlines/british-airways.html" class="airline-link">British Airways</a>
+        <a href="/airlines/lufthansa.html" class="airline-link">Lufthansa</a>
+        <a href="/airlines/air-france.html" class="airline-link">Air France</a>
+        <a href="/airlines/klm.html" class="airline-link">KLM</a>
+        <a href="/airlines/wizz-air.html" class="airline-link">Wizz Air</a>
+        <a href="/airlines/us-carriers.html" class="airline-link">American Airlines</a>
+        <a href="/airlines/us-carriers.html" class="airline-link">Delta</a>
+        <a href="/airlines/us-carriers.html" class="airline-link">United</a>
+        <a href="/airlines/iberia-vueling.html" class="airline-link">Iberia</a>
+        <a href="/airlines/turkish-norwegian.html" class="airline-link">Turkish Airlines</a>
+        <a href="/airlines/iberia-vueling.html" class="airline-link">Vueling</a>
+        <a href="/airlines/turkish-norwegian.html" class="airline-link">Norwegian</a>
+        <a href="/airlines/tap-sas-jet2-swiss.html" class="airline-link">TAP Air Portugal</a>
+        <a href="/airlines/tap-sas-jet2-swiss.html" class="airline-link">SAS</a>
+        <a href="/airlines/tap-sas-jet2-swiss.html" class="airline-link">Jet2</a>
+        <a href="/airlines/tap-sas-jet2-swiss.html" class="airline-link">Swiss</a>
+        <a href="/airlines/tap-sas-jet2-swiss.html" class="airline-link">Austrian</a>
+        <a href="/airlines/non-eu-longhaul.html" class="airline-link">Emirates</a>
+        <a href="/airlines/non-eu-longhaul.html" class="airline-link">Qatar Airways</a>
+        <a href="/airlines/non-eu-longhaul.html" class="airline-link">Etihad</a>
+        <a href="/airlines/non-eu-longhaul.html" class="airline-link">Singapore Airlines</a>
+      </div>
+    </section>
+
+    <section>
+      <div class="methodology">
+        <span class="eyebrow">Why "verified" means something here</span>
+        <h2>How we check facts on this site</h2>
+        <p>Every factual claim is tagged with the date we checked it and linked to where we found it — usually the regulator's own text or the company's own current pricing page. When sources disagree (which happens more than you'd think — even companies' own pages sometimes state different numbers in different places), we say so instead of picking the number that sounds best.</p>
+        <p>We're not a charity — some pages link to claims companies who pay us if you sign up through us. We disclose that on every page where it applies, and we don't let it change which option we say fits your situation.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <div class="wrap">
+      ClaimMyDelay is an independent resource. Not affiliated with any airline or claims company. Information is not legal advice.
+    </div>
+  </footer>
+
+</body>
+</html>

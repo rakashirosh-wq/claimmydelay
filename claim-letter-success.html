@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Claim Letter Is Ready — ClaimMyDelay</title>
+<meta name="description" content="Your flight compensation claim letter is ready to download and send.">
+<link rel="canonical" href="https://claimmydelay.vercel.app/claim-letter-success.html">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --board: #101B2E; --board-light: #1A2A45; --amber: #F2A93B; --paper: #FAFAF7;
+    --ink: #181818; --verified: #3F7158; --slate: #5C6B7A; --line: rgba(16,27,46,0.12);
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font-family:'Source Serif 4',serif; line-height:1.55; }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 0 24px 80px; }
+  .board-strip { background: var(--board); color: var(--paper); padding: 14px 0; font-family:'JetBrains Mono',monospace; font-size: 12.5px; }
+  .board-strip .wrap { padding-bottom:0; }
+  .board-strip a { color: var(--amber); text-decoration: none; font-weight: 700; }
+  .success-icon {
+    width:56px; height:56px; border-radius:50%; background:rgba(63,113,88,0.12); color:var(--verified);
+    display:flex; align-items:center; justify-content:center; font-size:28px; margin: 48px 0 20px;
+  }
+  h1 { font-family:'Inter',sans-serif; font-size: clamp(24px,4vw,32px); font-weight:700; margin:0 0 12px; }
+  .lead { font-family:'Inter',sans-serif; font-size:16px; color:var(--slate); }
+  .panel { border:1px solid var(--line); border-radius:10px; background:#fff; padding:26px; margin-top:28px; }
+  .panel h2 { font-family:'Inter',sans-serif; font-size:15.5px; font-weight:700; margin:0 0 14px; }
+  .btn { font-family:'Inter',sans-serif; font-weight:600; font-size:15px; padding:13px 24px; border-radius:7px; border:none; cursor:pointer; width:100%; margin-bottom:10px; }
+  .btn-primary { background:var(--board); color:var(--paper); }
+  .btn-outline { background:transparent; color:var(--board); border:1.5px solid var(--board); }
+  .next-steps { font-family:'Inter',sans-serif; font-size:14px; }
+  .next-steps li { margin-bottom:10px; }
+  footer { padding: 32px 0 48px; font-family:'Inter',sans-serif; font-size:13px; color:var(--slate); }
+</style>
+</head>
+<body>
+
+<div class="board-strip"><div class="wrap"><a href="/">← CLAIMMYDELAY</a></div></div>
+
+<div class="wrap">
+  <div class="success-icon">✓</div>
+  <h1>Your claim letter is ready</h1>
+  <p class="lead">We've emailed a PDF and plain-text copy to the address you provided. You can also download it directly below.</p>
+
+  <div class="panel">
+    <h2>Download your letter</h2>
+    <button class="btn btn-primary" id="downloadPdfBtn">Download as PDF</button>
+    <button class="btn btn-outline" id="downloadTxtBtn">Download as plain text (for email)</button>
+  </div>
+
+  <div class="panel">
+    <h2>What to do next</h2>
+    <ol class="next-steps">
+      <li>Find the airline's official claims/customer-relations email or web form — we link to most major airlines' claims pages from our <a href="/index.html#airlines">airline directory</a>.</li>
+      <li>Send the letter as-is, or paste it into their web form if they don't accept email.</li>
+      <li>Airlines are generally expected to respond within a few weeks — if you hear nothing after 4-6 weeks, it's worth following up or escalating to your country's national enforcement body.</li>
+      <li>If the airline denies the claim citing "extraordinary circumstances" and you believe that's wrong, that's exactly the situation where a full-service claims company chasing it for you can be worth the commission — see our <a href="/compare-companies.html">honest comparison</a>.</li>
+    </ol>
+  </div>
+
+  <p style="font-family:'Inter',sans-serif; font-size:13px; color:var(--slate); margin-top:24px;">
+    Note: PDF generation and email delivery on this page are handled by a real serverless function (<code>/api/paddle-webhook.js</code>) triggered by Paddle on successful payment — see the deployment README for the npm install, environment variables, and Paddle dashboard setup needed to activate it.
+  </p>
+</div>
+
+<footer><div class="wrap">ClaimMyDelay is an independent resource. Not affiliated with any airline or claims company. Information is not legal advice.</div></footer>
+
+</body>
+</html>

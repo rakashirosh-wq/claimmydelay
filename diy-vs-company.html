@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Should You File a Flight Compensation Claim Yourself or Use a Company?</title>
+<meta name="description" content="An honest, situational guide to whether you should DIY your flight compensation claim or use a full-service company — based on what actually determines outcomes, not which option pays better.">
+<link rel="canonical" href="https://claimmydelay.vercel.app/diy-vs-company.html">
+<meta property="og:title" content="DIY or Use a Claims Company? An Honest Guide">
+<meta property="og:description" content="What actually determines whether you should file your own flight compensation claim or pay a company to do it.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://claimmydelay.vercel.app/diy-vs-company.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Should I file a flight compensation claim myself or use a company?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It depends on your situation: DIY tends to work well for simple, undisputed claims with responsive airlines. A full-service company is often worth the commission if the airline has already denied your claim, if your flight was years ago and you'd otherwise let it lapse, or if you want zero involvement in the process." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it ever worth paying 25-40% commission to a claims company?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Often yes. Customer reviews show many people who tried DIY first, got stalled by the airline, and were glad to pay a company to take over and eventually win. The commission pays for the chasing and legal escalation, not just the paperwork." }
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --board:#101B2E; --board-light:#1A2A45; --amber:#F2A93B; --paper:#FAFAF7;
+    --ink:#181818; --verified:#3F7158; --caution:#B5562E; --slate:#5C6B7A; --line:rgba(16,27,46,0.12);
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font-family:'Source Serif 4',serif; line-height:1.6; }
+  .wrap { max-width:760px; margin:0 auto; padding:0 24px 80px; }
+  .board-strip { background:var(--board); color:var(--paper); padding:14px 0; font-family:'JetBrains Mono',monospace; font-size:12.5px; }
+  .board-strip .wrap { padding-bottom:0; display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap; }
+  .board-strip a { color:var(--amber); text-decoration:none; font-weight:700; }
+  header { padding:40px 0 8px; }
+  .eyebrow { font-family:'JetBrains Mono',monospace; font-size:11.5px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--board); background:rgba(242,169,59,0.25); display:inline-block; padding:4px 9px; border-radius:4px; margin-bottom:16px; }
+  h1 { font-family:'Inter',sans-serif; font-size:clamp(26px,4.5vw,38px); font-weight:700; letter-spacing:-0.01em; margin:0 0 14px; }
+  .lead { font-family:'Inter',sans-serif; font-size:17px; color:var(--slate); max-width:600px; }
+  h2 { font-family:'Inter',sans-serif; font-size:22px; font-weight:700; margin:44px 0 14px; }
+  p { font-size:16px; margin: 0 0 16px; }
+
+  .quiz-panel { border:1px solid var(--line); border-radius:10px; background:#fff; padding:24px; margin:28px 0; }
+  .quiz-panel h3 { font-family:'Inter',sans-serif; font-size:15px; font-weight:700; margin:0 0 14px; }
+  .quiz-q { font-family:'Inter',sans-serif; font-size:14.5px; font-weight:600; margin: 14px 0 8px; }
+  .quiz-q:first-of-type { margin-top:0; }
+  .radio-group { display:flex; gap:8px; flex-wrap:wrap; }
+  .radio-option { flex:1 1 100px; border:1px solid var(--line); border-radius:7px; padding:9px 10px; cursor:pointer; font-family:'Inter',sans-serif; font-size:13px; text-align:center; background:#fff; }
+  .radio-option input { display:none; }
+  .radio-option.selected { border-color:var(--amber); background:rgba(242,169,59,0.12); font-weight:600; }
+  .btn { font-family:'Inter',sans-serif; font-weight:600; font-size:15px; padding:12px 22px; border-radius:7px; border:none; cursor:pointer; background:var(--board); color:var(--paper); width:100%; margin-top:14px; }
+  .quiz-result { margin-top:18px; padding:16px 18px; border-radius:8px; display:none; font-family:'Inter',sans-serif; font-size:14.5px; }
+  .quiz-result.show { display:block; }
+  .quiz-result.diy { background:rgba(63,113,88,0.08); border:1px solid rgba(63,113,88,0.3); }
+  .quiz-result.company { background:rgba(242,169,59,0.1); border:1px solid rgba(242,169,59,0.4); }
+  .quiz-result a.cta { display:inline-block; margin-top:10px; font-weight:600; color:var(--board); border-bottom:2px solid var(--amber); text-decoration:none; }
+
+  .real-quote { border-left:3px solid var(--slate); padding:4px 0 4px 16px; margin:20px 0; font-style:italic; color:var(--slate); font-size:15px; }
+  .real-quote cite { display:block; font-style:normal; font-family:'Inter',sans-serif; font-size:12.5px; margin-top:6px; }
+
+  .ad-slot { border:1px dashed var(--line); border-radius:8px; padding:16px; text-align:center; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--slate); margin:32px 0; }
+  footer { padding:32px 0 48px; font-family:'Inter',sans-serif; font-size:13px; color:var(--slate); }
+</style>
+</head>
+<body>
+
+<div class="board-strip"><div class="wrap"><a href="/">← CLAIMMYDELAY</a><span>DIY VS COMPANY</span></div></div>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Decision guide</span>
+    <h1>Should you DIY your claim, or pay a company?</h1>
+    <p class="lead">There isn't a universally right answer — and we're not going to pretend there is just because we sell the DIY option. Here's what actually determines the better choice.</p>
+  </header>
+
+  <h2>The honest version</h2>
+  <p>Most "claim it yourself and save the commission" advice assumes the commission is always wasted money. It often isn't. Real customer reviews of claims companies show a recurring pattern: people who tried DIY first, got stuck when the airline stalled or stonewalled, then paid a company to take over — and were glad they did.</p>
+  <div class="real-quote">"Bottom line for us, it was worth them doing all the legwork... them taking 30% was no big deal."<cite>— Trustpilot review of a major claims company</cite></div>
+  <p>But the opposite happens too — people whose claim was simple and the airline paid quickly, who realize afterward they gave up 25-40% for something that would have taken them 20 minutes.</p>
+  <div class="real-quote">"Why should customers pay for your service when we end up doing the legwork ourselves?" <cite>— reviewer describing contacting the airline directly after a company provided no support</cite></div>
+
+  <h2>What actually predicts which path is better</h2>
+  <p><strong>Lean DIY if:</strong> your case is clear-cut (no "extraordinary circumstances" dispute), the airline has a working claims process, you're not in a rush, and you don't mind sending one email and following up if needed.</p>
+  <p><strong>Lean full-service if:</strong> the airline already denied your claim and you believe it was wrong, you're claiming for a flight from years ago that you'd otherwise just let lapse, the airline is known for stonewalling, or you genuinely don't want to spend any time on it — that's a legitimate reason too, not a weakness.</p>
+
+  <div class="quiz-panel">
+    <h3>Quick check — answer 3 questions</h3>
+    <div class="quiz-q">Has the airline already denied or ignored your claim?</div>
+    <div class="radio-group" id="q1">
+      <label class="radio-option" data-value="yes"><input type="radio" name="q1" value="yes">Yes</label>
+      <label class="radio-option" data-value="no"><input type="radio" name="q1" value="no">No / haven't claimed yet</label>
+    </div>
+    <div class="quiz-q">How old is the flight?</div>
+    <div class="radio-group" id="q2">
+      <label class="radio-option" data-value="recent"><input type="radio" name="q2" value="recent">Recent (under 6 months)</label>
+      <label class="radio-option" data-value="old"><input type="radio" name="q2" value="old">Over a year ago</label>
+    </div>
+    <div class="quiz-q">How much effort do you want to put in?</div>
+    <div class="radio-group" id="q3">
+      <label class="radio-option" data-value="some"><input type="radio" name="q3" value="some">I don't mind sending an email</label>
+      <label class="radio-option" data-value="none"><input type="radio" name="q3" value="none">I want zero involvement</label>
+    </div>
+    <button class="btn" onclick="quizResult()">See my recommendation</button>
+    <div class="quiz-result" id="quizResultBox"></div>
+  </div>
+
+  <div class="ad-slot">
+    <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="0000000002" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  </div>
+
+  <h2>The middle path</h2>
+  <p>You can also start DIY and switch later — there's no rule that says you have to commit upfront. Send your own claim letter first; if the airline denies it or goes silent past 6 weeks, that's exactly the point where a full-service company's leverage (legal escalation, knowing which claims are worth fighting) starts to earn its commission.</p>
+
+</div>
+
+<footer><div class="wrap">ClaimMyDelay is an independent resource. Not affiliated with any airline or claims company. Information is not legal advice.</div></footer>
+
+<script>
+function $(id){ return document.getElementById(id); }
+document.querySelectorAll('.radio-option').forEach(opt => {
+  opt.addEventListener('click', () => {
+    const group = opt.closest('.radio-group');
+    group.querySelectorAll('.radio-option').forEach(o => o.classList.remove('selected'));
+    opt.classList.add('selected');
+  });
+});
+function getSelected(groupId) {
+  const sel = document.querySelector('#' + groupId + ' .radio-option.selected');
+  return sel ? sel.dataset.value : null;
+}
+function quizResult() {
+  const q1 = getSelected('q1'), q2 = getSelected('q2'), q3 = getSelected('q3');
+  const box = $('quizResultBox');
+  if (!q1 || !q2 || !q3) {
+    box.className = 'quiz-result show';
+    box.innerHTML = 'Please answer all three questions.';
+    return;
+  }
+  const companyScore = (q1 === 'yes' ? 2 : 0) + (q2 === 'old' ? 1 : 0) + (q3 === 'none' ? 2 : 0);
+  box.className = 'quiz-result show ' + (companyScore >= 2 ? 'company' : 'diy');
+  if (companyScore >= 2) {
+    box.innerHTML = `<strong>Leaning full-service company.</strong> Based on your answers, a company's persistence and willingness to escalate is probably worth the commission here. <a class="cta" href="/compare-companies.html">Compare companies honestly →</a>`;
+  } else {
+    box.innerHTML = `<strong>Leaning DIY.</strong> Your situation looks straightforward enough that a self-filed claim has a good shot — and you keep 100% of the payout. <a class="cta" href="/check.html">Check eligibility & build my letter →</a>`;
+  }
+}
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</body>
+</html>

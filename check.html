@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flight Compensation Eligibility Checker — Free, Then $10 for Your Claim Letter</title>
+<meta name="description" content="Check if your delayed or cancelled flight qualifies for compensation under EU261 or UK261. Free eligibility check. If you qualify, generate a ready-to-send claim letter for $10.">
+<link rel="canonical" href="https://claimmydelay.vercel.app/check.html">
+<meta property="og:title" content="Free Flight Compensation Eligibility Checker">
+<meta property="og:description" content="Find out in 60 seconds if your flight qualifies for compensation, with the exact regulation cited. $10 for a ready-to-send claim letter if you do.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://claimmydelay.vercel.app/check.html">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "ClaimMyDelay Flight Compensation Eligibility Checker",
+  "applicationCategory": "UtilitiesApplication",
+  "description": "Checks flight delay and cancellation compensation eligibility under EU261 and UK261 regulations, citing the applicable article.",
+  "offers": { "@type": "Offer", "price": "10", "priceCurrency": "USD" }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --board: #101B2E;
+    --board-light: #1A2A45;
+    --amber: #F2A93B;
+    --paper: #FAFAF7;
+    --ink: #181818;
+    --verified: #3F7158;
+    --caution: #B5562E;
+    --slate: #5C6B7A;
+    --line: rgba(16,27,46,0.12);
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font-family:'Source Serif 4',serif; line-height:1.55; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px 80px; }
+  .layout { display: grid; grid-template-columns: 1fr; gap: 24px; }
+
+  .board-strip { background: var(--board); color: var(--paper); padding: 14px 0; font-family:'JetBrains Mono',monospace; font-size: 12.5px; }
+  .board-strip .wrap { padding-bottom:0; display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap; }
+  .board-strip a { color: var(--amber); text-decoration: none; font-weight: 700; }
+
+  header { padding: 40px 0 4px; }
+  .eyebrow {
+    font-family:'JetBrains Mono',monospace; font-size:11.5px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
+    color: var(--board); background: rgba(242,169,59,0.25); display:inline-block; padding:4px 9px; border-radius:4px; margin-bottom:16px;
+  }
+  h1 { font-family:'Inter',sans-serif; font-size: clamp(26px,4.5vw,36px); font-weight:700; letter-spacing:-0.01em; margin:0 0 12px; }
+  .lead { font-family:'Inter',sans-serif; font-size:16.5px; color:var(--slate); max-width:600px; }
+
+  .panel { border:1px solid var(--line); border-radius:10px; background:#fff; padding:26px; margin-top: 28px; }
+  .panel h2 { font-family:'Inter',sans-serif; font-size:16px; font-weight:700; margin:0 0 18px; }
+
+  .field { margin-bottom: 18px; }
+  label { display:block; font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600; margin-bottom:6px; }
+  .hint { font-family:'Inter',sans-serif; font-size:12px; color:var(--slate); margin-top:4px; display:block; }
+  input[type="text"], input[type="number"], input[type="date"], select {
+    width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:6px;
+    font-family:'Inter',sans-serif; font-size:15px; color:var(--ink); background:var(--paper);
+  }
+  input:focus, select:focus { outline:2px solid var(--amber); outline-offset:1px; }
+  .radio-group { display:flex; gap:10px; flex-wrap:wrap; }
+  .radio-option {
+    flex: 1 1 140px; border:1px solid var(--line); border-radius:7px; padding:11px 12px; cursor:pointer;
+    font-family:'Inter',sans-serif; font-size:13.5px; text-align:center; background:#fff; transition: all 0.12s ease;
+  }
+  .radio-option input { display:none; }
+  .radio-option.selected { border-color: var(--amber); background: rgba(242,169,59,0.12); font-weight:600; }
+
+  .btn {
+    font-family:'Inter',sans-serif; font-weight:600; font-size:15px; padding:13px 24px; border-radius:7px;
+    border:none; cursor:pointer; background:var(--board); color:var(--paper); width:100%;
+  }
+  .btn:hover { background: var(--board-light); }
+
+  /* ---- result states ---- */
+  .result { margin-top: 28px; border-radius:10px; padding:24px; display:none; }
+  .result.show { display:block; }
+  .result.eligible { background: rgba(63,113,88,0.08); border:1px solid rgba(63,113,88,0.3); }
+  .result.not-eligible { background: rgba(92,107,122,0.08); border:1px solid var(--line); }
+  .result.borderline { background: rgba(181,86,46,0.07); border:1px solid rgba(181,86,46,0.3); }
+  .result-tag {
+    font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;
+    margin-bottom:10px; display:inline-block; padding:3px 9px; border-radius:4px;
+  }
+  .result.eligible .result-tag { background: rgba(63,113,88,0.2); color: var(--verified); }
+  .result.not-eligible .result-tag { background: rgba(92,107,122,0.2); color: var(--slate); }
+  .result.borderline .result-tag { background: rgba(181,86,46,0.2); color: var(--caution); }
+  .result h3 { font-family:'Inter',sans-serif; font-size:19px; margin:0 0 10px; }
+  .result p { font-family:'Inter',sans-serif; font-size:14.5px; color:var(--ink); margin: 0 0 10px; }
+  .result .estimate { font-family:'JetBrains Mono',monospace; font-size:28px; font-weight:700; color:var(--board); margin: 12px 0; }
+  .result .citation { font-family:'Inter',sans-serif; font-size:12.5px; color:var(--slate); border-top:1px solid var(--line); padding-top:12px; margin-top:14px; }
+
+  .cta-row { display:flex; gap:12px; margin-top:18px; flex-wrap:wrap; }
+  .btn-buy { background: var(--amber); color: var(--board); flex:1 1 220px; }
+  .btn-buy:hover { background: #e09a28; }
+  .btn-outline { background:transparent; color:var(--board); border:1.5px solid var(--board); flex:1 1 180px; }
+
+  .ad-slot {
+    border: 1px dashed var(--line); border-radius: 8px; padding: 16px; text-align:center;
+    font-family:'JetBrains Mono',monospace; font-size: 11px; color: var(--slate); margin: 32px 0;
+  }
+
+  footer { padding: 32px 0 48px; font-family:'Inter',sans-serif; font-size:13px; color:var(--slate); }
+</style>
+</head>
+<body>
+
+<div class="board-strip"><div class="wrap"><a href="/">← CLAIMMYDELAY</a><span>FREE ELIGIBILITY CHECK</span></div></div>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Step 1 of 2 — Free</span>
+    <h1>Check if your flight qualifies</h1>
+    <p class="lead">Takes about a minute. We'll tell you straight away if you likely qualify, probably don't, or if it's a genuinely borderline case — we won't oversell a weak claim to get your $10.</p>
+  </header>
+
+  <div class="panel">
+    <h2>Your flight</h2>
+    <div class="field">
+      <label for="region">Where did your flight depart from, or land in?</label>
+      <select id="region">
+        <option value="eu">EU / EEA / Switzerland</option>
+        <option value="uk">United Kingdom</option>
+        <option value="us">United States only (not EU/UK)</option>
+        <option value="other">Elsewhere (not EU/UK/US)</option>
+      </select>
+      <span class="hint">EU261 can apply even on non-EU airlines if you departed from the EU, or landed in the EU on an EU-based airline.</span>
+    </div>
+
+    <div class="field">
+      <label>What happened?</label>
+      <div class="radio-group" id="situationGroup">
+        <label class="radio-option" data-value="delay"><input type="radio" name="situation" value="delay">Delayed</label>
+        <label class="radio-option" data-value="cancelled"><input type="radio" name="situation" value="cancelled">Cancelled</label>
+        <label class="radio-option" data-value="denied_boarding"><input type="radio" name="situation" value="denied_boarding">Denied boarding</label>
+      </div>
+    </div>
+
+    <div class="field" id="delayLengthField" style="display:none;">
+      <label for="delayHours">How many hours late did you arrive at your final destination?</label>
+      <input type="number" id="delayHours" min="0" placeholder="e.g. 4">
+    </div>
+
+    <div class="field" id="noticeField" style="display:none;">
+      <label for="noticeDays">How many days before departure were you told?</label>
+      <input type="number" id="noticeDays" min="0" placeholder="e.g. 3">
+    </div>
+
+    <div class="field">
+      <label for="distance">Roughly how long is/was the flight?</label>
+      <select id="distance">
+        <option value="short">Under 1,500 km (e.g. within Europe)</option>
+        <option value="medium">1,500–3,500 km</option>
+        <option value="long">Over 3,500 km</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>What reason did the airline give (if any)?</label>
+      <div class="radio-group" id="reasonGroup">
+        <label class="radio-option" data-value="technical"><input type="radio" name="reason" value="technical">Technical/mechanical fault</label>
+        <label class="radio-option" data-value="weather"><input type="radio" name="reason" value="weather">Weather</label>
+        <label class="radio-option" data-value="staffing"><input type="radio" name="reason" value="staffing">Crew/staffing (airline's own)</label>
+        <label class="radio-option" data-value="atc"><input type="radio" name="reason" value="atc">Air traffic control / strike (third-party)</label>
+        <label class="radio-option" data-value="unknown"><input type="radio" name="reason" value="unknown">Not told / unclear</label>
+      </div>
+      <span class="hint">Be honest here — this is the single biggest factor in whether you actually qualify.</span>
+    </div>
+
+    <div class="field">
+      <label for="flightDate">Date of the flight</label>
+      <input type="date" id="flightDate">
+      <span class="hint">Claims are often valid years later — we'll flag if you might be near a deadline.</span>
+    </div>
+
+    <button class="btn" onclick="checkEligibility()">Check eligibility</button>
+  </div>
+
+  <div class="result" id="resultBox">
+    <!-- filled by JS -->
+  </div>
+
+  <div class="ad-slot" id="adSlotMid">
+    <!-- AdSense unit: in-article, claims-checker page, mid-content -->
+    <ins class="adsbygoogle"
+         style="display:block; text-align:center;"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="0000000000"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+  </div>
+
+  <p style="font-family:'Inter',sans-serif; font-size:12.5px; color:var(--slate);">
+    This tool gives a plain-English estimate based on EU261/UK261 rules as we understand them — it isn't legal advice, and airlines sometimes dispute "extraordinary circumstances" claims even when they may not hold up. See our <a href="/eu261-basics.html">EU261 basics page</a> for the full rules.
+  </p>
+</div>
+
+<footer><div class="wrap">ClaimMyDelay is an independent resource. Not affiliated with any airline or claims company. Information is not legal advice.</div></footer>
+
+<script>
+function $(id){ return document.getElementById(id); }
+
+document.querySelectorAll('.radio-option').forEach(opt => {
+  opt.addEventListener('click', () => {
+    const group = opt.closest('.radio-group');
+    group.querySelectorAll('.radio-option').forEach(o => o.classList.remove('selected'));
+    opt.classList.add('selected');
+    opt.querySelector('input').checked = true;
+    if (group.id === 'situationGroup') {
+      const val = opt.dataset.value;
+      $('delayLengthField').style.display = (val === 'delay') ? 'block' : 'none';
+      $('noticeField').style.display = (val === 'cancelled') ? 'block' : 'none';
+    }
+  });
+});
+
+function getSelected(groupId) {
+  const sel = document.querySelector('#' + groupId + ' .radio-option.selected');
+  return sel ? sel.dataset.value : null;
+}
+
+function checkEligibility() {
+  const region = $('region').value;
+  const situation = getSelected('situationGroup');
+  const reason = getSelected('reasonGroup');
+  const distance = $('distance').value;
+  const delayHours = parseFloat($('delayHours').value) || 0;
+  const noticeDays = parseFloat($('noticeDays').value);
+  const flightDate = $('flightDate').value;
+
+  const box = $('resultBox');
+  box.className = 'result show';
+
+  if (!situation) {
+    box.classList.add('not-eligible');
+    box.innerHTML = `<span class="result-tag">Missing info</span><h3>Tell us what happened</h3><p>Select whether your flight was delayed, cancelled, or you were denied boarding, then try again.</p>`;
+    box.scrollIntoView({behavior:'smooth', block:'center'});
+    return;
+  }
+
+  // --- jurisdiction gate ---
+  if (region === 'us') {
+    box.classList.add('not-eligible');
+    box.innerHTML = `<span class="result-tag">Likely not eligible</span><h3>US flights don't have EU261-style cash compensation</h3>
+      <p>The US doesn't have a law requiring cash compensation for delays the way the EU/UK do. You may still be owed a <strong>refund</strong> (not compensation) for a cancelled or significantly changed flight under US DOT rules.</p>
+      <div class="citation">See our <a href="/us-refund-vs-compensation.html">refund vs. compensation guide for US flights</a> for what you can actually claim.</div>`;
+    box.scrollIntoView({behavior:'smooth', block:'center'});
+    return;
+  }
+
+  // --- extraordinary circumstances gate ---
+  const extraordinary = (reason === 'weather' || reason === 'atc');
+  if (extraordinary) {
+    box.classList.add('borderline');
+    box.innerHTML = `<span class="result-tag">Borderline — often denied, sometimes wrongly</span><h3>This may count as "extraordinary circumstances"</h3>
+      <p>${reason === 'weather' ? 'Weather' : 'Air traffic control issues / third-party strikes'} are often treated as outside the airline's control, which can exempt them from paying compensation (though not from offering care like meals/hotel). Airlines sometimes claim this even when the real cause was something else — it's worth checking the actual flight history.</p>
+      <div class="citation">Source: EU261, Article 5(3) — exemption for "extraordinary circumstances which could not have been avoided even if all reasonable measures had been taken."</div>`;
+    box.scrollIntoView({behavior:'smooth', block:'center'});
+    return;
+  }
+
+  // --- cancelled with long notice ---
+  if (situation === 'cancelled' && !isNaN(noticeDays) && noticeDays >= 14) {
+    box.classList.add('not-eligible');
+    box.innerHTML = `<span class="result-tag">Likely not eligible</span><h3>14+ days' notice usually exempts the airline</h3>
+      <p>If you were told 14 or more days before departure, the airline generally doesn't owe compensation for the cancellation itself — though you're still entitled to a full refund or rebooking.</p>
+      <div class="citation">Source: EU261, Article 5(1)(c).</div>`;
+    box.scrollIntoView({behavior:'smooth', block:'center'});
+    return;
+  }
+
+  // --- delay under 3 hours ---
+  if (situation === 'delay' && delayHours < 3) {
+    box.classList.add('not-eligible');
+    box.innerHTML = `<span class="result-tag">Not eligible (yet)</span><h3>Under 3 hours doesn't qualify</h3>
+      <p>EU261/UK261 compensation starts at a 3-hour delay at your final destination. If the delay grows past 3 hours by the time you actually arrive, this changes — worth double-checking your actual arrival time.</p>
+      <div class="citation">Source: EU261, as interpreted by the Sturgeon ruling (Court of Justice of the EU, 2009).</div>`;
+    box.scrollIntoView({behavior:'smooth', block:'center'});
+    return;
+  }
+
+  // --- eligible: calculate estimate ---
+  let amount;
+  if (distance === 'short') amount = 250;
+  else if (distance === 'medium') amount = 400;
+  else amount = 600;
+
+  if (situation === 'delay' && delayHours >= 3 && delayHours < 4 && distance === 'long') {
+    amount = 300; // reduced compensation rule for long flights delayed 3-4h
+  }
+
+  let deadlineNote = '';
+  if (flightDate) {
+    const years = (Date.now() - new Date(flightDate).getTime()) / (1000*60*60*24*365);
+    if (years > 5) {
+      deadlineNote = `<p><strong>Heads up:</strong> this flight was over 5 years ago. Limitation periods vary by country (some allow claims back 6 years, others much less) — check the timeframe for the country involved before relying on this.</p>`;
+    }
+  }
+
+  box.classList.add('eligible');
+  box.innerHTML = `<span class="result-tag">Likely eligible</span><h3>You likely qualify for compensation</h3>
+    <div class="estimate">€${amount} estimated</div>
+    <p>Based on a ${distance === 'short' ? 'short-haul' : distance === 'medium' ? 'medium-haul' : 'long-haul'} flight ${situation === 'delay' ? `delayed ${delayHours}+ hours` : situation === 'cancelled' ? 'cancelled with short notice' : 'where you were denied boarding'}, with a reason that doesn't appear to qualify as "extraordinary circumstances."</p>
+    ${deadlineNote}
+    <div class="citation">Source: EU261/UK261 Article 7 — fixed compensation amounts by flight distance.</div>
+    <div class="cta-row">
+      <button class="btn btn-buy" onclick="window.location.href='/claim-letter.html?amount=${amount}&situation=${situation}'">Generate my claim letter — $10</button>
+      <button class="btn btn-outline" onclick="window.location.href='/compare-companies.html'">Compare full-service companies instead</button>
+    </div>`;
+  box.scrollIntoView({behavior:'smooth', block:'center'});
+}
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</body>
+</html>
